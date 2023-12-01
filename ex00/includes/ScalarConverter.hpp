@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:37 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/22 15:01:08 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 12:59:33 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ class ScalarConverter
 private:
 	ScalarConverter(void);
 	ScalarConverter(const ScalarConverter& obj);
-	ScalarConverter&	operator=(const ScalarConverter& obj);
+	ScalarConverter& operator=(const ScalarConverter& obj);
 	~ScalarConverter(void);
+
+
 
 	static bool	isChar(const std::string& litteral);
 	static bool	isInt(const std::string& litteral);

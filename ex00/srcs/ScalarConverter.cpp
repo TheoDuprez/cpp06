@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 14:59:58 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/22 15:00:38 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 14:23:46 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,14 @@ void	ScalarConverter::convert(const std::string& litteral)
 		printDouble(litteral);
 	else if (isChar(litteral) == true)
 		printChar(litteral);
+	else
+		std::cout << "Error: string format" << std::endl;
 	return ;
 }
 
 bool	ScalarConverter::isChar(const std::string& litteral)
 {
-	int	value;
-
-	value = static_cast<int>(litteral[0]);
-	if (litteral.length() == 1 && isprint(value))
+	if (litteral.length() == 1 && isprint(static_cast<int>(litteral[0])))
 		return true;
 	return false;
 }
@@ -131,14 +130,14 @@ void	ScalarConverter::printInt(const std::string& litteral)
 {
 	long long	value = atoll(litteral.c_str());
 
-	if (isprint(value))
+	if (value < 255 && isprint(value))
 		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
 	else
 		std::cout << "char: " << "Non displayable" << std::endl;
 	if (value <= INT_MAX && value >= INT_MIN)
 		std::cout << "int: " << value << std::endl;
 	else
-		std::cout << "char: " << "impossible" << std::endl;
+		std::cout << "int: " << "impossible" << std::endl;
 	std::cout << "float: " <<  std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(value) << std::endl;
 	return ;
@@ -148,14 +147,14 @@ void	ScalarConverter::printFloat(const std::string& litteral)
 {
 	float	value = atof(litteral.c_str());
 
-	if (isprint(static_cast<int>(value)))
+	if (value < 255 && isprint(static_cast<int>(value)))
 		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
 	else
 		std::cout << "char: " << "Non displayable" << std::endl;
 	if (static_cast<int>(value) <= INT_MAX && static_cast<int>(value) >= INT_MIN)
 		std::cout << "int: " << value << std::endl;
 	else
-		std::cout << "char: " << "impossible" << std::endl;
+		std::cout << "int: " << "impossible" << std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << value << "f" << std::endl;
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(value) << std::endl;
 	return ;
@@ -165,14 +164,14 @@ void	ScalarConverter::printDouble(const std::string& litteral)
 {
 	double	value = atof(litteral.c_str());
 
-	if (isprint(static_cast<char>(value)))
+	if (value < 255 && isprint(static_cast<char>(value)))
 		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
 	else
 		std::cout << "char: " << "Non displayable" << std::endl;
 	if (static_cast<int>(value) <= INT_MAX && static_cast<int>(value) >= INT_MIN)
 		std::cout << "int: " << static_cast<int>(value) << std::endl;
 	else
-		std::cout << "char: " << "impossible" << std::endl;
+		std::cout << "int: " << "impossible" << std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(value) << std::endl;
 	return ;
@@ -186,3 +185,4 @@ void	ScalarConverter::printSpecialCase(const std::string& forFloat, const std::s
 	std::cout << "double: " << forDouble << std::endl;
 	return ;
 }
+

@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:20 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/22 13:31:46 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 14:27:39 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	main(void)
 	data->printData();
 	std::cout << "----------------------------------------" << std::endl;
 	reinterpret_cast<Data*>(test)->printData();
+	std::cout << "----------------------------------------" << std::endl;
+	if (Serializer::deserialize(Serializer::serialize(data)) == data)
+		std::cout << "Same pointer" << std::endl;
 	std::cout << "----------------------------------------" << std::endl;
 
 	delete data;

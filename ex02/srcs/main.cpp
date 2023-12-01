@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:20 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/22 15:09:43 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 14:32:02 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(void)
 	delete base;
 	return (0);
 }
-
 
 static Base*	generate(void)
 {
@@ -58,6 +57,7 @@ static Base*	generate(void)
 static void	identify(Base* p)
 {
 	Base*	test = NULL;
+
 
 	std::cout << "Identify real type by pointer." << std::endl;
 	test = dynamic_cast<A*>(p);
