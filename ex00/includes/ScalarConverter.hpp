@@ -6,16 +6,15 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:37 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/01 12:59:33 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/12 13:52:00 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <cstdlib>
 #include <climits>
-#include <cmath>
-#include <iomanip>
 
 class ScalarConverter
 {
@@ -25,18 +24,10 @@ private:
 	ScalarConverter& operator=(const ScalarConverter& obj);
 	~ScalarConverter(void);
 
-
-
-	static bool	isChar(const std::string& litteral);
-	static bool	isInt(const std::string& litteral);
-	static bool	isFloat(const std::string& litteral);
-	static bool	isDouble(const std::string& litteral);
-
-	static void	printChar(const std::string& litteral);
-	static void	printInt(const std::string& litteral);
-	static void	printFloat(const std::string& litteral);
-	static void	printDouble(const std::string& litteral);
-	static void	printSpecialCase(const std::string& forFloat, const std::string& forDouble);
+	static void	printChar(double value, bool isnan);
+	static void	printInt(double value, bool isnan);
+	static void	printFloat(double value, bool isnan);
+	static void	printDouble(double value, bool isnan);
 
 public:
 	static void	convert(const std::string& litteral);
