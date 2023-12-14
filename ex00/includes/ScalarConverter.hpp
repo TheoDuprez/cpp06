@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:37 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/13 13:24:28 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 15:38:32 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <cstdlib>
 #include <climits>
 #include <cfloat>
+
+#define MAX_PRINTABLE 999999
 
 class ScalarConverter
 {

@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:20 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/01 14:32:02 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 16:43:15 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ static void	identify(Base* p)
 		std::cout << "The real type of Base is C !" << std::endl;
 		return ;
 	}
-
-	if (test == NULL)
-		std::cout << "Error with casts !" << std::endl;
 	return ;
 }
 
