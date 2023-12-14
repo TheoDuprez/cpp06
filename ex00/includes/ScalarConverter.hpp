@@ -6,16 +6,16 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:37 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/14 15:38:32 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 16:50:06 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef SCALARCONVERTER_HPP
+# define SCALARCONVERTER_HPP
 
 #include <iostream>
 #include <cstdlib>
 #include <climits>
-#include <cfloat>
 
 #define MAX_PRINTABLE 999999
 
@@ -36,3 +36,5 @@ public:
 	static void	convert(const std::string& litteral);
 
 };
+
+#endif

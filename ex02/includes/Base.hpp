@@ -6,11 +6,12 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:21 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/22 14:58:09 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 16:51:14 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef BASE_HPP
+# define BASE_HPP
 
 #include <iostream>
 #include <cstdlib>
@@ -21,3 +22,5 @@ class	Base
 	public:
 		virtual	~Base(void) {};
 };
+
+#endif
