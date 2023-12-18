@@ -6,15 +6,12 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:21 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/14 16:51:42 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/22 14:16:04 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C_HPP
-# define C_HPP
+#pragma once
 
 #include "./Base.hpp"
 
 class	C : public Base {};
-
-#endif

@@ -6,12 +6,11 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:19:06 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/14 16:50:29 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/22 13:43:21 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_HPP
-# define DATA_HPP
+#pragma once
 
 #include <iostream>
 
@@ -33,5 +32,3 @@ public:
 void	printData(void) const;
 
 };
-
-#endif

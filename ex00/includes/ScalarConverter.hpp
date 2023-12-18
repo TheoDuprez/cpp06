@@ -6,18 +6,22 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:37 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/14 16:50:06 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/18 13:58:53 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#pragma once
 
 #include <iostream>
 #include <cstdlib>
 #include <climits>
+#include <cfloat>
+#include <sstream>
 
-#define MAX_PRINTABLE 999999
+#define CHAR 0
+#define INT 1
+#define FLOAT 2
+#define DOUBLE 3
 
 class ScalarConverter
 {
@@ -27,14 +31,17 @@ private:
 	ScalarConverter& operator=(const ScalarConverter& obj);
 	~ScalarConverter(void);
 
-	static void	printChar(double value, bool isnan);
-	static void	printInt(double value, bool isnan);
-	static void	printFloat(double value);
-	static void	printDouble(double value);
+	static int	getRealType(const std::string& str);
+	static void	setChar(const std::string& str, char c, int i, float f, double d);
+	static void	setInt(const std::string& str, char c, int i, float f, double d);
+	static void	setFloat(const std::string& str, char c, int i, float f, double d);
+	static void	setDouble(const std::string& str, char c, int i, float f, double d);
+	// static void	printChar(double value, bool isnan);
+	// static void	printInt(double value, bool isnan);
+	// static void	printFloat(double value);
+	// static void	printDouble(double value);
 
 public:
 	static void	convert(const std::string& litteral);
 
 };
-
-#endif

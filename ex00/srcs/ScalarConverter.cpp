@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:17:41 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/14 15:52:20 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/18 14:08:52 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,76 +35,65 @@ ScalarConverter::~ScalarConverter(void)
 	return ;
 }
 
-size_t	countOccurences(char toFind, std::string str)
+void ScalarConverter::convert(const std::string& litteral)
 {
-	int	nbOccurences = 0;
-
-	for (size_t i = 0; i < str.length(); i++)
-		if (str[i] == toFind)
-			nbOccurences++;
-	return nbOccurences;
-}
-
-bool	isInf(std::string litteral)
-{
-	if (litteral == "inf" || litteral == "-inf" || litteral == "+inf" || litteral == "inff" || litteral == "-inff" || litteral == "+inff")
-		return true;
-	return false;
-}
-
-void	ScalarConverter::convert(const std::string& litteral)
-{
-	double	value;
-	char	*endPtr;
-
-	value = strtod(litteral.c_str(), &endPtr);
-
-	if (isInf(litteral) == false && ((*endPtr != 0 && *endPtr != 'f') || litteral.length() == 0 || litteral.length() - 1 > litteral.find('f')|| \
-	(litteral.find('.') == std::string::npos && litteral.find('f') != std::string::npos)))
-		std::cout << "Error: Invalid argument" << std::endl;
-	else
+	char	c;
+	int		i;
+	float	f;
+	double	d;
+	int	real_type = getRealType(litteral);
+	
+	switch(real_type)
 	{
-		printChar(value, litteral == "nan" || litteral == "nanf");
-		printInt(value, litteral == "nan" || litteral == "nanf");
-		printFloat(value);
-		printDouble(value);
+		case CHAR:
+			setChar(litteral, c, i, f, d);
+			break;
+		case INT:
+			setInt(litteral, c, i, f, d);
+			break;
+		case FLOAT:
+			setFloat(litteral, c, i, f, d);
+			break;
+		case DOUBLE:
+			setDouble(litteral, c, i, f, d);
+			break;
+		default:
+			std::cout << "Error: bad string format" << std::endl;
+			return ;
 	}
-	return ;
 }
 
-void	ScalarConverter::printChar(double value, bool isnan)
+int ScalarConverter::getRealType(const std::string& str)
 {
-	if (isnan == true || value < CHAR_MIN || value > CHAR_MAX)
-	{
-		std::cout << "char: impossible" << std::endl;
-		return ;
-	}
-	if (isprint(static_cast<char>(value)) == false)
-		std::cout << "char: Non displayable" << std::endl;
-	else
-		std::cout << "char: " << "'" << static_cast<char>(value) << "'" << std::endl;
+	int		i;
+	float	f;
+	double	d;
+
+	std::istringstream	iss(str);
+	std::istringstream	fss(str.substr(0, str.length() - 1));
+	std::istringstream	dss(str);
+
+	if (str == "nanf" || str == "+inff" || str == "-inff")
+		return (FLOAT);
+	else if (str == "nan" || str == "+inf" || str == "-inf")
+		return (DOUBLE);
+
+	iss >> i;
+	dss >> d;
+	fss >> f;
+
+	if (str.length() == 1 && !isdigit(str[0]))
+		return CHAR;
+	else if (iss.eof() && !iss.fail())
+		return INT;
+	else if (dss.eof() && !dss.fail())
+		return DOUBLE;
+	else if (fss.eof() && !fss.fail())
+		return FLOAT;
+
+	return -1;
 }
 
-void	ScalarConverter::printInt(double value, bool isnan)
+void	ScalarConverter::setChar(const std::string& str, char c, int i, float f, double d)
 {
-	if (isnan == true || value < INT_MIN || value > INT_MAX)
-		std::cout << "int: impossible" << std::endl;
-	else
-		std::cout << "int: " << static_cast<int>(value) << std::endl;
-}
-
-void	ScalarConverter::printFloat(double value)
-{
-	if ((value < MAX_PRINTABLE && value > -MAX_PRINTABLE) && static_cast<int>(value) == value)
-		std::cout << "float: " << static_cast<float>(value) << ".0f" << std::endl;
-	else
-		std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
-}
-
-void	ScalarConverter::printDouble(double value)
-{
-	if ((value < MAX_PRINTABLE && value > -MAX_PRINTABLE) && static_cast<int>(value) == value)
-		std::cout << "double: " << value << ".0" << std::endl;
-	else
-		std::cout << "double: " << value << std::endl;
 }
