@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:17:41 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/19 13:58:34 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/19 16:08:51 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,16 @@ int ScalarConverter::getRealType(const std::string& str)
 	int		i;
 	float	f;
 	double	d;
+	long double ld;
 
 	std::istringstream	iss(str);
 	std::istringstream	fss(str.substr(0, str.length() - 1));
 	std::istringstream	dss(str);
+	std::istringstream	ldss(str);
 
-	if (str == "nanf" || str == "+inff" || str == "-inff")
+	if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")
 		return (FLOAT);
-	else if (str == "nan" || str == "+inf" || str == "-inf")
+	else if (str == "nan" || str == "+inf" || str == "-inf" || str == "inf")
 		return (DOUBLE);
 
 	iss >> i;
@@ -87,9 +89,9 @@ int ScalarConverter::getRealType(const std::string& str)
 		return CHAR;
 	else if (iss.eof() && !iss.fail())
 		return INT;
-	else if (dss.eof() && !dss.fail())
+	else if (dss.eof())
 		return DOUBLE;
-	else if (fss.eof() && !fss.fail())
+	else if (fss.eof() && str[str.length() - 1] == 'f')
 		return FLOAT;
 
 	return -1;
@@ -160,7 +162,7 @@ void	ScalarConverter::print(std::string str, char c, int i, float f, double d)
 		std::cout << "float: ";
 		if (isnan == true)
 			std::cout << "nanf" << std::endl;
-		else if (f - static_cast<int>(f) == 0)
+		else if (f - i == 0)
 			std::cout << f << ".0f" << std::endl;
 		else
 			std::cout << f << "f" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:37 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/19 12:52:48 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/19 15:20:22 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <string>
 #include <cmath>
 #include <limits>
+#include <iomanip>
 
 #define CHAR 0
 #define INT 1
