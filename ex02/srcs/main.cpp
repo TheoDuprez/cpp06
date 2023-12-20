@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:46:20 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/01 14:32:02 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/20 11:05:17 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static void	identify(Base* p)
 {
 	Base*	test = NULL;
 
-
 	std::cout << "Identify real type by pointer." << std::endl;
 	test = dynamic_cast<A*>(p);
 	if (test != NULL)
@@ -95,20 +94,25 @@ static void	identify(Base& p)
 	{
 		test = dynamic_cast<A&>(p);
 		std::cout << "The real type of Base is A !" << std::endl;
+		return ;
 	}
 	catch (...) {}
 	try
 	{
 		test = dynamic_cast<B&>(p);
 		std::cout << "The real type of Base is B !" << std::endl;
+		return ;
 	}
 	catch (...) {}
 	try
 	{
 		test = dynamic_cast<C&>(p);
 		std::cout << "The real type of Base is C !" << std::endl;
+		return ;
 	}
-	catch (...) {}
+	catch (...) {
+		std::cout << "Error with casts !" << std::endl;
+	}
 
 	return ;
 }

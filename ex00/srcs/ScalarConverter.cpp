@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:17:41 by tduprez           #+#    #+#             */
-/*   Updated: 2023/12/19 16:08:51 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/12/20 10:49:35 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ void ScalarConverter::convert(const std::string& litteral)
 	double	d;
 	int	real_type = getRealType(litteral);
 	
+	if (isGoodFormat(litteral) == false)
+	{
+		std::cout << "Error: bad string format" << std::endl;
+		return ;
+	}
 	switch(real_type)
 	{
 		case CHAR:
@@ -64,17 +69,35 @@ void ScalarConverter::convert(const std::string& litteral)
 	print(litteral, c, i, f, d);
 }
 
+bool	ScalarConverter::isInf(const std::string& litteral)
+{
+	if (litteral == "inf" || litteral == "-inf" || litteral == "+inf" || litteral == "inff" || litteral == "-inff" || litteral == "+inff")
+			return true;
+	return false;
+}
+
+bool ScalarConverter::isGoodFormat(const std::string& litteral)
+{
+	double	value;
+	char	*endPtr;
+
+	value = strtod(litteral.c_str(), &endPtr);
+
+	if ((isInf(litteral) == false && litteral != "nanf") && ((*endPtr != 0 && *endPtr != 'f') || litteral.length() == 0 || litteral.length() - 1 > litteral.find('f')|| \
+	(litteral.find('.') == std::string::npos && litteral.find('f') != std::string::npos)))
+		return false;
+	return true;
+}
+
 int ScalarConverter::getRealType(const std::string& str)
 {
 	int		i;
 	float	f;
 	double	d;
-	long double ld;
 
 	std::istringstream	iss(str);
 	std::istringstream	fss(str.substr(0, str.length() - 1));
 	std::istringstream	dss(str);
-	std::istringstream	ldss(str);
 
 	if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")
 		return (FLOAT);
@@ -89,9 +112,9 @@ int ScalarConverter::getRealType(const std::string& str)
 		return CHAR;
 	else if (iss.eof() && !iss.fail())
 		return INT;
-	else if (dss.eof())
+	else if (dss.eof() && !dss.fail())
 		return DOUBLE;
-	else if (fss.eof() && str[str.length() - 1] == 'f')
+	else if (fss.eof() && str[str.length() - 1] == 'f' && !fss.fail())
 		return FLOAT;
 
 	return -1;
@@ -113,8 +136,6 @@ void	ScalarConverter::setInt(const std::string& str, char& c, int& i, float& f, 
 	c = static_cast<char>(i);
 	f = static_cast<float>(i);
 	d = static_cast<double>(i);
-
-	std::cout << static_cast<int>(c) << std::endl;
 
 	return ;
 }
